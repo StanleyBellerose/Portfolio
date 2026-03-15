@@ -1,0 +1,132 @@
+<!-- 
+EXEMPLE : Comment ajouter une vidéo à votre galerie ELYAD Marketing
+
+Cet exemple montre 3 façons différentes d'intégrer des vidéos à votre portfolio.
+-->
+
+<!-- ============================================================ -->
+<!-- MÉTHODE 1 : Vidéo HTML5 avec contrôles (Recommandée) -->
+<!-- ============================================================ -->
+
+<div class="card pneu" onclick="openLb(11)">
+  <video style="width:100%;height:400px;object-fit:cover;background:#111;display:block;" muted playsinline>
+    <source src="videos/ma-video.mp4" type="video/mp4">
+    <source src="videos/ma-video.webm" type="video/webm">
+    Votre navigateur ne supporte pas la vidéo.
+  </video>
+  <div class="ov"></div>
+  <div class="info">
+    <div class="icat">Montage Vidéo</div>
+    <div class="ititle">Titre de votre vidéo</div>
+    <div class="idesc">Description courte – Année</div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- MÉTHODE 2 : Avec poster (image de prévisualisation) -->
+<!-- ============================================================ -->
+
+<div class="card pneu" onclick="openLb(12)">
+  <video 
+    style="width:100%;height:400px;object-fit:cover;background:#111;display:block;" 
+    muted 
+    playsinline
+    poster="images/thumbnail.jpg"
+  >
+    <source src="videos/ma-video.mp4" type="video/mp4">
+    <source src="videos/ma-video.webm" type="video/webm">
+    Votre navigateur ne supporte pas la vidéo.
+  </video>
+  <div class="ov"></div>
+  <div class="info">
+    <div class="icat">Montage Vidéo</div>
+    <div class="ititle">Campagne Marketing</div>
+    <div class="idesc">Vidéo promotionnelle – 2025</div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- MÉTHODE 3 : Vidéo avec boucle (pour header animé) -->
+<!-- ============================================================ -->
+
+<div class="card pneu s2" onclick="openLb(13)">
+  <video 
+    style="width:100%;height:400px;object-fit:cover;background:#111;display:block;" 
+    autoplay 
+    muted 
+    loop 
+    playsinline
+  >
+    <source src="videos/boucle.mp4" type="video/mp4">
+    <source src="videos/boucle.webm" type="video/webm">
+  </video>
+  <div class="ov"></div>
+  <div class="info">
+    <div class="icat">Direction Artistique</div>
+    <div class="ititle">Animation Produit</div>
+    <div class="idesc">Montage en boucle – 2025</div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- AJOUTER ÉGALEMENT À VOTRE TABLEAU items[] EN JAVASCRIPT -->
+<!-- ============================================================ -->
+
+<!-- 
+Remplacez l'adresse email et téléphone dans TOUS les fichiers HTML 
+avec vos coordonnées réelles.
+
+Dans votre JavaScript (elyad-marketing.html), ajoutez ces entrées :
+
+const items=[
+  // ... vos images existantes ...
+  
+  // Vidéo 1 - Méthode simple
+  {s:'videos/ma-video.mp4', t:'Titre de vidéo', d:'Description courte', cat:'pneu', type:'video'},
+  
+  // Vidéo 2 - Avec plus de détails
+  {s:'videos/campagne.mp4', t:'Campagne Marketing', d:'Vidéo promotionnelle pour réseaux sociaux', cat:'pneu', type:'video'},
+  
+  // Vous pouvez aussi garder les images (sans type:'video')
+  {s:'images/photo.jpg', t:'Photo', d:'Description', cat:'pneu'}
+];
+
+Puis dans votre HTML, référencez-les :
+<div class="card pneu" onclick="openLb(11)">...</div>
+                                    ↑
+                              Numéro du tableau (0 = première entrée)
+-->
+
+<!-- ============================================================ -->
+<!-- NOTES IMPORTANTES -->
+<!-- ============================================================ -->
+
+<!--
+1. CHEMINS DES FICHIERS:
+   - "videos/ma-video.mp4" = fichier dans le dossier /videos
+   - "../videos/video.mp4" = aller au dossier parent, puis /videos
+   - "https://..." = URL externe (YouTube, Vimeo, etc.)
+
+2. ATTRIBUTS VIDÉO:
+   - autoplay = lance automatiquement (avec muted uniquement)
+   - muted = sans son
+   - controls = affiche lecteur/pause (automatique dans lightbox)
+   - loop = boucle infinie
+   - playsinline = lecteur inline sur mobile
+   - poster = image de prévisualisation
+
+3. FORMAT RECOMMANDÉ:
+   - MP4 pour compatibilité maximale
+   - WebM pour compression
+   - Incluez les deux sources pour meilleure compatibilité
+
+4. TAILLE RECOMMANDÉE:
+   - Résolution: 1920x1080 ou moins
+   - Bitrate: 1000-3000 kbps
+   - Durée: 15-30 secondes pour réseaux sociaux
+
+5. POUR REMPLACER LES VIDÉOS DE DÉMO:
+   Remplacez l'URL de source:
+   - src="https://commondatastorage.googleapis.com/gtv-videos-library/sample/BigBuckBunny.mp4"
+   Par votre URL personnelle
+-->

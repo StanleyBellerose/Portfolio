@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stanley Bellerose — Montages Vidéo</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+h1, h2, h3, h4, h5, h6 {font-family:'Playfair Display',serif;font-weight:800;letter-spacing:-.02em;color:var(--wh)}
+:root{--bk:#0a0a0a;--wh:#f5f2ed;--am:#E8952A;--rd:#D93A2B;--gy:#888480}
+html{scroll-behavior:smooth}
+body{background:var(--bk);color:var(--wh);font-family:'Inter',sans-serif;overflow-x:hidden;cursor:none}
+.cursor{width:8px;height:8px;background:var(--am);border-radius:50%;position:fixed;pointer-events:none;z-index:9999;transition:width .2s,height .2s;transform:translate(-50%,-50%)}
+.cursor.hv{width:44px;height:44px;background:transparent;border:1.5px solid var(--am)}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:1.2rem 3rem;background:rgba(10,10,10,.95);border-bottom:1px solid rgba(255,255,255,.07)}
+.nav-logo{font-family:'Playfair Display',serif;font-size:1.5rem;color:var(--wh);text-decoration:none;font-weight:800}
+.nav-back{font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gy);text-decoration:none;transition:color .2s}
+.nav-back:hover{color:var(--am)}
+.hero{padding:9rem 3rem 5rem;border-bottom:1px solid rgba(255,255,255,.07);position:relative;overflow:hidden}
+.hero::after{content:'';position:absolute;top:0;right:0;width:40%;height:100%;background:var(--am);opacity:.03;clip-path:polygon(25% 0,100% 0,100% 100%,0 100%)}
+.hero-eye{font-size:.6rem;letter-spacing:.3em;text-transform:uppercase;color:var(--am);margin-bottom:1rem}
+.hero-title{font-family:'Playfair Display',serif;font-size:clamp(3.5rem,8vw,7rem);line-height:.95;color:var(--wh);margin-bottom:1.5rem;font-weight:800}
+.hero-title span{color:var(--am)}
+.hero-line{width:60px;height:2px;background:var(--am);margin:2rem 0}
+.hero-sub{font-family:'Playfair Display',serif;font-style:italic;font-size:1.1rem;color:var(--gy);max-width:560px;line-height:1.7;font-weight:600}
+.hero-sub em{color:var(--wh)}
+.video-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:2rem;padding:3rem;max-width:1200px;margin:0 auto}
+.video-card{background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.08);border-radius:8px;overflow:hidden;transition:all .3s}
+.video-card:hover{border-color:var(--am);background:rgba(255,255,255,.05)}
+.video-container{position:relative;width:100%;height:400px;background:#111;display:flex;align-items:center;justify-content:center}
+.video-container video{width:100%;height:100%;object-fit:contain}
+.video-info{padding:2rem}
+.video-title{font-family:'Playfair Display',serif;font-size:1.8rem;color:var(--wh);margin-bottom:.5rem;font-weight:800}
+.video-desc{font-size:.85rem;color:var(--gy);line-height:1.6}
+.video-date{font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:var(--am);margin-top:1rem}
+.placeholder-text{position:absolute;color:var(--gy);font-size:1.2rem;text-align:center;pointer-events:none}
+footer{display:flex;justify-content:space-between;align-items:center;padding:3rem;border-top:1px solid rgba(255,255,255,.07);margin-top:4rem}
+.ft{font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--gy);font-weight:800}
+.fc{font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gy)}
+.fc a{color:var(--am);text-decoration:none}
+@media(max-width:768px){
+  .video-grid{grid-template-columns:1fr}
+  .hero{padding:6rem 1.5rem 3rem}
+}
+</style>
+</head>
+<body>
+<div class="cursor" id="cur"></div>
+
+<nav>
+  <a class="nav-logo" href="#">Stanley Bellerose</a>
+  <a class="nav-back" href="index.html">↖ Portfolio</a>
+</nav>
+
+<div class="hero">
+  <div class="hero-eye">Directeur Artistique · Montage Vidéo</div>
+  <h1 class="hero-title">Montages<br>Vidéo<span>.</span></h1>
+  <div class="hero-line"></div>
+  <p class="hero-sub">Direction artistique et montage vidéo pour <em>campagnes marketing</em>, <em>contenu réseaux sociaux</em> et <em>productions audiovisuelles</em>. Réalisations récentes pour marques et agences martiniquaises.</p>
+</div>
+
+<div class="video-grid">
+  <!-- Vidéo 1 - Unboxing -->
+  <div class="video-card">
+    <div class="video-container">
+      <video width="100%" height="400" controls playsinline style="width:100%;height:100%;object-fit:contain;">
+        <source src="./videos/Unboxing.mp4" type="video/mp4">
+        Votre navigateur ne supporte pas la vidéo HTML5.
+      </video>
+    </div>
+    <div class="video-info">
+      <div class="video-title">Unboxing - Produit</div>
+      <div class="video-desc">Vidéo produit haute qualité - Déballage et présentation détaillée pour réseaux sociaux et e-commerce</div>
+      <div class="video-date">2025 - Montage Vidéo</div>
+    </div>
+  </div>
+
+  <!-- Vidéo 2 - Présentation avec sous-titres -->
+  <div class="video-card">
+    <div class="video-container">
+      <video width="100%" height="400" controls playsinline style="width:100%;height:100%;object-fit:contain;">
+        <source src="./videos/VIDEO PRES with caption.mp4" type="video/mp4">
+        Votre navigateur ne supporte pas la vidéo HTML5.
+      </video>
+    </div>
+    <div class="video-info">
+      <div class="video-title">Présentation - Avec Sous-titres</div>
+      <div class="video-desc">Vidéo de présentation complète avec sous-titres intégrés - Idéale pour marketing et communication corporate</div>
+      <div class="video-date">2025 - Production Vidéo</div>
+    </div>
+  </div>
+
+  <!-- Vidéo 3 - WhatsApp -->
+  <div class="video-card">
+    <div class="video-container">
+      <video width="100%" height="400" controls playsinline style="width:100%;height:100%;object-fit:contain;">
+        <source src="./videos/VIDÉO CHAINE WHATSAPP.mp4" type="video/mp4">
+        Votre navigateur ne supporte pas la vidéo HTML5.
+      </video>
+    </div>
+    <div class="video-info">
+      <div class="video-title">Vidéo Chaîne WhatsApp</div>
+      <div class="video-desc">Contenu optimisé pour WhatsApp - Format vertical pour engagement maximal et partage facile</div>
+      <div class="video-date">2025 - Social Media</div>
+    </div>
+  </div>
+
+  <!-- Vidéo 4 - Reel Shooting -->
+  <div class="video-card">
+    <div class="video-container">
+      <video width="100%" height="400" controls playsinline style="width:100%;height:100%;object-fit:contain;">
+        <source src="./videos/reel shooting.mp4" type="video/mp4">
+        Votre navigateur ne supporte pas la vidéo HTML5.
+      </video>
+    </div>
+    <div class="video-info">
+      <div class="video-title">Reel Shooting - Production</div>
+      <div class="video-desc">Coulisses de tournage vidéo - Production professionnelle avec qualité cinématographique pour réseaux sociaux</div>
+      <div class="video-date">2025 - Direction Artistique</div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="ft">Stanley Bellerose</div>
+  <div class="fc">Contact : <a href="mailto:stanleybellerose@gmail.com">stanleybellerose@gmail.com</a> · 06 96 88 08 49</div>
+</footer>
+
+<script>
+const cur=document.getElementById('cur');
+document.addEventListener('mousemove',e=>{cur.style.left=e.clientX+'px';cur.style.top=e.clientY+'px'});
+document.querySelectorAll('a,video').forEach(el=>{
+  el.addEventListener('mouseenter',()=>cur.classList.add('hv'));
+  el.addEventListener('mouseleave',()=>cur.classList.remove('hv'));
+});
+</script>
+</body>
+</html>

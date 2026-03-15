@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stanley Bellerose — Test Vidéos</title>
+<link href="https://fonts.googleapis.com/css2?family=Something+in+the+Cloud&family=DM+Serif+Display:ital@0;1&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--bk:#0a0a0a;--wh:#f5f2ed;--am:#E8952A;--rd:#D93A2B;--gy:#888480}
+html{scroll-behavior:smooth}
+body{background:var(--bk);color:var(--wh);font-family:'Space Mono',monospace;overflow-x:hidden}
+.container{max-width:1200px;margin:0 auto;padding:3rem}
+h1{font-family:'Something in the Cloud',cursive;font-size:3rem;margin-bottom:1.5rem;color:var(--wh)}
+h2{font-family:'Something in the Cloud',cursive;font-size:2rem;margin-top:2rem;margin-bottom:1rem;color:var(--am)}
+.info-box{background:rgba(232,149,42,.1);border-left:3px solid var(--am);padding:1.5rem;margin:2rem 0;border-radius:4px}
+.code{background:rgba(255,255,255,.05);padding:1rem;border-radius:4px;overflow-x:auto;font-size:.9rem;margin:1rem 0;border:1px solid rgba(255,255,255,.1)}
+.success{color:#4ade80;font-weight:bold}
+.warning{color:var(--am);font-weight:bold}
+.demo-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:2rem;margin:2rem 0}
+.demo-card{background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.1);border-radius:8px;padding:1.5rem;transition:all .3s}
+.demo-card:hover{border-color:var(--am);background:rgba(255,255,255,.05)}
+.demo-card h3{font-family:'Something in the Cloud',cursive;color:var(--wh);margin-bottom:1rem}
+video{width:100%;max-height:300px;background:#111;border-radius:4px;margin:1rem 0}
+.checklist{list-style:none;padding:0}
+.checklist li{padding:0.5rem 0;padding-left:1.5rem;position:relative}
+.checklist li:before{content:'✓';position:absolute;left:0;color:var(--am);font-weight:bold}
+.next-steps{background:linear-gradient(to right, var(--am), transparent);border-left:3px solid var(--am);padding:1.5rem;margin:2rem 0;border-radius:4px}
+footer{text-align:center;padding:3rem;border-top:1px solid rgba(255,255,255,.1);margin-top:4rem;color:var(--gy)}
+</style>
+</head>
+<body>
+
+<div class="container">
+  <h1>✓ Configuration des Vidéos — Terminée!</h1>
+  
+  <div class="info-box">
+    <strong class="success">✓ Tous les fichiers ont été créés avec succès!</strong><br>
+    Votre portfolio supporte maintenant les vidéos HTML5 en lecture plein écran.
+  </div>
+
+  <h2>📋 Fichiers créés</h2>
+  <ul class="checklist">
+    <li>✓ <strong>videos-demo.html</strong> — Page dédiée aux montages vidéo (4 vidéos de démonstration)</li>
+    <li>✓ <strong>GUIDE_VIDEOS.md</strong> — Documentation complète pour utiliser les vidéos</li>
+    <li>✓ <strong>EXEMPLE_AJOUTER_VIDEOS.html</strong> — Exemples de code pour ajouter vos vidéos</li>
+    <li>✓ <strong>/videos/</strong> — Dossier créé pour stocker vos vidéos</li>
+    <li>✓ <strong>elyad-marketing.html</strong> — Mis à jour avec support vidéo lightbox</li>
+    <li>✓ <strong>index.html</strong> — Ajout du lien vers "Montages Vidéo"</li>
+  </ul>
+
+  <h2>🎬 Page Démo</h2>
+  <p>Une page complète de démonstration a été créée avec 4 vidéos test :</p>
+  
+  <div class="demo-grid">
+    <div class="demo-card">
+      <h3>📺 Vidéos intégrées</h3>
+      <p>Les vidéos utilisent HTML5 et sont lisibles directement dans le navigateur avec contrôles natifs.</p>
+      <ul class="checklist" style="font-size:.9rem">
+        <li>Pause/Play</li>
+        <li>Barre de progression</li>
+        <li>Son activable</li>
+        <li>Plein écran</li>
+      </ul>
+    </div>
+    
+    <div class="demo-card">
+      <h3>🌐 Compatible partout</h3>
+      <p>Fonctionne sur :</p>
+      <ul class="checklist" style="font-size:.9rem">
+        <li>Chrome/Chromium</li>
+        <li>Firefox</li>
+        <li>Safari</li>
+        <li>Edge</li>
+        <li>Mobile</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2>🚀 Étapes suivantes</h2>
+  
+  <div class="next-steps">
+    <h3 style="margin-top:0">Comment utiliser votre page vidéos</h3>
+    <p style="margin:.5rem 0"><strong>1.</strong> Ouvrez votre portfolio → Allez à "Travaux" → Cliquez sur "Montages Vidéo"</p>
+    <p style="margin:.5rem 0"><strong>2.</strong> Vous verrez 4 vidéos de démonstration</p>
+    <p style="margin:.5rem 0"><strong>3.</strong> Remplacez les vidéos par vos propres fichiers</p>
+  </div>
+
+  <h2>🎥 Ajouter vos vidéos</h2>
+  
+  <h3>Étape 1 : Placer votre fichier vidéo</h3>
+  <p>Copiez votre fichier vidéo (.mp4, .webm) dans le dossier <strong>/videos/</strong></p>
+  <div class="code">
+Portfolio/<br>
+├── videos-demo.html<br>
+├── videos/<br>
+│   ├── ma-video.mp4          ← Votre vidéo ici<br>
+│   └── autre-video.mp4
+  </div>
+
+  <h3>Étape 2 : Mettre à jour videos-demo.html</h3>
+  <p>Ouvrez <strong>videos-demo.html</strong> et remplacez l'URL de la vidéo :</p>
+  <div class="code">
+&lt;video controls&gt;<br>
+&nbsp;&nbsp;&lt;source src="<span class="warning">https://commondatastorage.googleapis.com/..../BigBuckBunny.mp4</span>" type="video/mp4"&gt;<br>
+&lt;/video&gt;
+  </div>
+
+  <p>Par :</p>
+  <div class="code">
+&lt;video controls&gt;<br>
+&nbsp;&nbsp;&lt;source src="<span class="success">videos/ma-video.mp4</span>" type="video/mp4"&gt;<br>
+&lt;/video&gt;
+  </div>
+
+  <h3>Étape 3 : Optimiser vos vidéos (Optionnel)</h3>
+  <p>Pour réduire la taille et améliorer la compatibilité :</p>
+  <div class="code">
+# Avec HandBrake (interface graphique)<br>
+→ Télécharger: https://handbrake.fr/<br><br>
+
+# Ou avec FFmpeg (ligne de commande)<br>
+ffmpeg -i video.mov -c:v libx264 -preset slow video.mp4
+  </div>
+
+  <h2>✨ Fonctionnalités disponibles</h2>
+  
+  <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem;margin:2rem 0">
+    <div style="background:rgba(255,255,255,.02);padding:1.5rem;border-radius:4px">
+      <h4 style="color:var(--am);margin-bottom:.5rem">📱 Responsive</h4>
+      <p style="font-size:.9rem">Vos vidéos s'adaptent à tous les écrans (desktop, tablet, mobile)</p>
+    </div>
+    
+    <div style="background:rgba(255,255,255,.02);padding:1.5rem;border-radius:4px">
+      <h4 style="color:var(--am);margin-bottom:.5rem">⏯️ Contrôles natifs</h4>
+      <p style="font-size:.9rem">Lecture, pause, volume, plein écran inclus</p>
+    </div>
+    
+    <div style="background:rgba(255,255,255,.02);padding:1.5rem;border-radius:4px">
+      <h4 style="color:var(--am);margin-bottom:.5rem">🎨 Design intégré</h4>
+      <p style="font-size:.9rem">Harmonisé avec votre portfolio existant</p>
+    </div>
+    
+    <div style="background:rgba(255,255,255,.02);padding:1.5rem;border-radius:4px">
+      <h4 style="color:var(--am);margin-bottom:.5rem">📊 Performant</h4>
+      <p style="font-size:.9rem">Optimisé pour vitesse de chargement rapide</p>
+    </div>
+  </div>
+
+  <h2>🔗 Fichiers de référence</h2>
+  <ul class="checklist">
+    <li><strong>GUIDE_VIDEOS.md</strong> — Lire pour documentation complète</li>
+    <li><strong>EXEMPLE_AJOUTER_VIDEOS.html</strong> — Voir des exemples de code</li>
+    <li><strong>videos-demo.html</strong> — Voir une implémentation complète</li>
+  </ul>
+
+  <div class="info-box" style="background:rgba(74,222,128,.1);border-color:#4ade80;margin-top:3rem">
+    <h3 style="color:#4ade80;margin-top:0">✅ Vous êtes prêt à ajouter vos vidéos!</h3>
+    <p>Cliquez sur <strong>"Montages Vidéo"</strong> dans votre portfolio pour voir la page en action.</p>
+  </div>
+
+</div>
+
+<footer>
+  <p>Configuration vidéo complète — Stanley Bellerose Portfolio</p>
+  <p style="font-size:.85rem;margin-top:1rem">Besoin d'aide? Consultez GUIDE_VIDEOS.md</p>
+</footer>
+
+</body>
+</html>

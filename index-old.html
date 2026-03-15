@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stanley Bellerose — Directeur Artistique</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Inter:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--bk:#0a0a0a;--wh:#f5f2ed;--cr:#f0ece4;--rd:#D93A2B;--am:#E8952A;--gy:#888480}
+html{scroll-behavior:smooth}
+body{background:var(--bk);color:var(--wh);font-family:'Space Mono',monospace;overflow-x:hidden;cursor:none}
+
+.cursor{width:8px;height:8px;background:var(--rd);border-radius:50%;position:fixed;pointer-events:none;z-index:9999;transition:width .2s,height .2s,background .2s;transform:translate(-50%,-50%)}
+.cursor.hv{width:44px;height:44px;background:transparent;border:1.5px solid var(--rd)}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:1.2rem 3rem;mix-blend-mode:difference}
+.nav-logo{font-family:'Playfair Display',serif;font-size:1.6rem;color:var(--wh);cursor:pointer;font-weight:700}
+.nav-links{display:flex;gap:2rem;align-items:center}
+.nav-links a{font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--wh);text-decoration:none;cursor:pointer;transition:opacity .2s}
+.nav-links a:hover{opacity:.5}
+
+/* HERO */
+#hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;overflow:hidden}
+.hero-left{background:var(--bk);display:flex;flex-direction:column;justify-content:flex-end;padding:5rem 3rem 4rem;position:relative;z-index:2}
+.hero-right{background:var(--rd);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.hero-right::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(45deg,transparent,transparent 28px,rgba(0,0,0,.08) 28px,rgba(0,0,0,.08) 30px)}
+.hero-right-inner{position:relative;z-index:2;text-align:center;padding:2rem}
+.hero-right-text{font-family:'Playfair Display',serif;font-size:clamp(3.5rem,7vw,6.5rem);line-height:1.05;color:var(--bk);background:linear-gradient(135deg,#000,#333,#000);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;letter-spacing:.02em;font-weight:800;text-shadow:0 20px 40px rgba(0,0,0,.3);filter:drop-shadow(0 2px 10px rgba(217,58,43,.4))}
+.hero-badge{display:inline-block;margin-top:1.5rem;border:2px solid var(--bk);padding:.5rem 1.2rem;font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--bk)}
+.hero-eyebrow{font-size:.6rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gy);margin-bottom:1.2rem}
+.hero-name{font-family:'Playfair Display',serif;font-size:clamp(3rem,5.5vw,5rem);line-height:1.05;color:var(--wh);margin-bottom:1.8rem;font-weight:700;letter-spacing:-.02em}
+.hero-desc{font-family:'DM Serif Display',serif;font-style:italic;font-size:1rem;color:var(--gy);line-height:1.7;max-width:340px;margin-bottom:1.8rem}
+.hero-desc em{color:var(--wh)}
+.hero-tags{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:2.5rem}
+.hero-tag{font-size:.55rem;letter-spacing:.15em;text-transform:uppercase;padding:.3rem .7rem;color:var(--am);border:1px solid var(--am)}
+.hero-cta{display:inline-flex;align-items:center;gap:1rem;background:var(--rd);color:var(--wh);padding:.9rem 2rem;font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;cursor:pointer;transition:transform .2s,background .2s;border:none;width:fit-content;text-decoration:none}
+.hero-cta:hover{background:var(--wh);color:var(--bk);transform:translateX(4px)}
+.scroll-indicator{position:absolute;bottom:2rem;right:2rem;display:flex;flex-direction:column;align-items:center;gap:.5rem;font-size:.55rem;letter-spacing:.2em;text-transform:uppercase;color:var(--bk);opacity:.6;z-index:3}
+.scroll-line{width:1px;height:40px;background:var(--bk);animation:scrollDown 1.5s ease-in-out infinite}
+@keyframes scrollDown{0%,100%{transform:scaleY(1);opacity:.6}50%{transform:scaleY(.4);opacity:.2}}
+
+/* MARQUEE */
+.mq-wrap{background:var(--rd);overflow:hidden;padding:.8rem 0;white-space:nowrap;border-top:1px solid var(--bk);border-bottom:1px solid var(--bk)}
+.mq-inner{display:inline-flex;animation:mq 20s linear infinite}
+.mq-inner span{font-family:'Playfair Display',serif;font-size:1.6rem;color:var(--bk);padding:0 2rem;font-weight:700}
+.mq-inner .dot{padding:0;opacity:.5;font-family:monospace;font-size:1rem}
+@keyframes mq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ABOUT */
+#about{border-bottom:1px solid rgba(255,255,255,.1)}
+.about-grid{display:grid;grid-template-columns:1fr 2fr}
+.about-side{background:var(--cr);display:flex;flex-direction:column;justify-content:space-between;padding:4rem 2.5rem;border-right:1px solid rgba(0,0,0,.1)}
+.big-num{font-family:'Something in the Cloud',cursive;font-size:7rem;line-height:1;color:var(--bk);opacity:.15}
+.side-lbl{font-size:.6rem;letter-spacing:.25em;text-transform:uppercase;color:var(--gy)}
+.about-body{padding:4rem 3rem}
+.sec-title{font-family:'Playfair Display',serif;font-size:4rem;color:var(--wh);margin-bottom:1.5rem;font-weight:800;letter-spacing:-.02em}
+.about-p{font-family:'DM Serif Display',serif;font-size:1.1rem;line-height:1.75;color:var(--gy);max-width:580px;margin-bottom:1.2rem}
+.about-p em{color:var(--wh)}
+.sk-cat{margin-top:1.8rem;margin-bottom:1.2rem}
+.sk-cat-lbl{font-size:.55rem;letter-spacing:.25em;text-transform:uppercase;color:var(--am);margin-bottom:.7rem}
+.sk-row{display:flex;flex-wrap:wrap;gap:.5rem}
+.sk-tag{font-size:.58rem;letter-spacing:.15em;text-transform:uppercase;border:1px solid rgba(255,255,255,.15);padding:.35rem .8rem;color:var(--gy);transition:all .2s;cursor:default}
+.sk-tag:hover{border-color:var(--rd);color:var(--rd)}
+
+/* STATS */
+.stats-bar{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid rgba(255,255,255,.1);border-bottom:1px solid rgba(255,255,255,.1)}
+.stat-it{padding:2rem 2.5rem;border-right:1px solid rgba(255,255,255,.1);display:flex;flex-direction:column;gap:.4rem}
+.stat-it:last-child{border-right:none}
+.stat-n{font-family:'Playfair Display',serif;font-size:3.2rem;color:var(--wh);line-height:1;font-weight:700}
+.stat-l{font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gy)}
+
+/* EXPERIENCE */
+.exp-section{padding:5rem 3rem;border-bottom:1px solid rgba(255,255,255,.1)}
+.exp-hdr{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:3rem}
+.sub-lbl{font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gy)}
+.tl-grid{display:grid;grid-template-columns:1fr 1fr}
+.tl-item{padding:2rem 2.5rem;border-left:1px solid rgba(255,255,255,.08);border-bottom:1px solid rgba(255,255,255,.08);transition:background .2s}
+.tl-item:hover{background:rgba(255,255,255,.02)}
+.tl-item:nth-child(odd){border-left:none;border-right:1px solid rgba(255,255,255,.08)}
+.tl-date{font-size:.6rem;letter-spacing:.2em;color:var(--am);margin-bottom:.6rem;text-transform:uppercase}
+.tl-role{font-family:'Playfair Display',serif;font-size:1.8rem;color:var(--wh);line-height:1.1;margin-bottom:.2rem;font-weight:700}
+.tl-co{font-size:.65rem;letter-spacing:.15em;color:var(--rd);text-transform:uppercase;margin-bottom:1rem}
+.tl-ul{list-style:none}
+.tl-ul li{font-size:.7rem;color:var(--gy);padding:.3rem 0 .3rem 1rem;position:relative;line-height:1.5}
+.tl-ul li::before{content:'—';position:absolute;left:0;color:var(--rd);opacity:.6}
+.fo-row{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid rgba(255,255,255,.08);margin-top:3rem}
+.fo-item{padding:2rem 2.5rem;border-right:1px solid rgba(255,255,255,.08);transition:background .2s}
+.fo-item:last-child{border-right:none}
+.fo-item:hover{background:rgba(255,255,255,.02)}
+
+/* WORKS */
+#works{padding:5rem 0 0}
+.wk-hdr{display:flex;justify-content:space-between;align-items:flex-end;padding:0 3rem 2.5rem;border-bottom:1px solid rgba(255,255,255,.1)}
+.wk-grid{display:grid;grid-template-columns:1fr 1fr}
+.wk-item{position:relative;overflow:hidden;cursor:pointer;border-right:1px solid rgba(255,255,255,.08);border-bottom:1px solid rgba(255,255,255,.08);text-decoration:none;display:block}
+.wk-item:nth-child(even){border-right:none}
+.wk-vis{height:320px;position:relative;display:flex;align-items:center;justify-content:center;transition:transform .5s ease}
+.wk-item:hover .wk-vis{transform:scale(1.03)}
+.wk-overlay{position:absolute;inset:0;background:transparent;opacity:1;transition:opacity .3s;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:2rem;color:var(--wh);font-weight:700}
+.wk-overlay img{max-width:70%;max-height:70%;object-fit:contain;opacity:.8;transition:opacity .3s}
+.wk-item:hover .wk-overlay img{opacity:1}
+.wk-ph{font-family:'Playfair Display',serif;font-size:4rem;opacity:0;color:var(--wh);text-align:center;padding:1rem;line-height:1.2;font-weight:700}
+.wk-ac{position:absolute;width:70px;height:70px;border:2px solid;opacity:.25}
+.wk-ac.tl{top:24px;left:24px;border-color:var(--am)}
+.wk-ac.br{bottom:24px;right:24px;border-color:var(--wh);transform:rotate(15deg)}
+.wk-info{padding:1.5rem 2rem;display:flex;justify-content:space-between;align-items:flex-start;background:var(--bk);border-top:1px solid rgba(255,255,255,.08)}
+.wk-title{font-family:'Playfair Display',serif;font-size:1.8rem;color:var(--wh);font-weight:700}
+.wk-meta{font-size:.58rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gy);margin-top:.3rem}
+.wk-arr{font-size:1.2rem;color:var(--gy);transition:all .2s;align-self:center}
+.wk-item:hover .wk-arr{color:var(--rd);transform:translateX(4px)}
+
+/* CONTACT */
+#contact{display:grid;grid-template-columns:1fr 1fr;min-height:55vh}
+.ct-left{background:var(--cr);color:var(--bk);padding:5rem 3rem;display:flex;flex-direction:column;justify-content:space-between}
+.ct-big{font-family:'Playfair Display',serif;font-size:clamp(2.8rem,5vw,4.5rem);line-height:1.1;color:var(--bk);font-weight:800}
+.ct-big span{color:var(--rd)}
+.ct-sub{font-family:'DM Serif Display',serif;font-style:italic;color:var(--gy);font-size:1rem;margin-top:1.2rem}
+.ct-details{display:flex;flex-direction:column;gap:.8rem}
+.ct-line{display:flex;align-items:center;gap:.8rem}
+.ct-dot{width:6px;height:6px;background:var(--rd);border-radius:50%;flex-shrink:0}
+.ct-email{font-family:'Something in the Cloud',cursive;font-size:1.3rem;color:var(--bk);text-decoration:none;border-bottom:2px solid var(--rd);padding-bottom:.1rem}
+.ct-info{font-size:.72rem;letter-spacing:.1em;color:var(--gy);font-family:'Space Mono',monospace}
+.ct-right{background:var(--bk);padding:5rem 3rem;display:flex;flex-direction:column;gap:1.4rem}
+.ct-rtitle{font-family:'Something in the Cloud',cursive;font-size:2.2rem;color:var(--wh);margin-bottom:.3rem}
+.f-grp{display:flex;flex-direction:column;gap:.4rem}
+.f-lbl{font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gy)}
+.f-inp{background:transparent;border:none;border-bottom:1px solid rgba(255,255,255,.15);color:var(--wh);font-family:'Space Mono',monospace;font-size:.82rem;padding:.6rem 0;outline:none;transition:border-color .2s}
+.f-inp:focus{border-color:var(--rd)}
+.f-inp::placeholder{color:rgba(255,255,255,.2)}
+.f-ta{resize:none;height:75px}
+.f-btn{background:var(--rd);color:var(--wh);border:none;padding:.9rem 2.5rem;font-family:'Space Mono',monospace;font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;cursor:pointer;transition:all .2s;width:fit-content;margin-top:.3rem}
+.f-btn:hover{background:var(--wh);color:var(--bk)}
+
+footer{display:flex;justify-content:space-between;align-items:center;padding:1.5rem 3rem;border-top:1px solid rgba(255,255,255,.1)}
+.ft-name{font-family:'Something in the Cloud',cursive;font-size:1.2rem;color:var(--gy)}
+.ft-copy{font-size:.58rem;letter-spacing:.15em;color:rgba(255,255,255,.18);text-transform:uppercase}
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cur"></div>
+
+<nav>
+  <div class="nav-logo">Stanley Bellerose</div>
+  <div class="nav-links">
+    <a href="#about">Profil</a>
+    <a href="#experience">Expériences</a>
+    <a href="#works">Travaux</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-left">
+    <p class="hero-eyebrow">Portfolio — Direction Artistique & Graphisme</p>
+    <h1 class="hero-name">Stanley<br>Bellerose</h1>
+    <p class="hero-desc">DA de <em>23 ans</em>, entre <em>cosmétique</em> et <em>médias</em>. La mode et les sneakers nourrissent des identités visuelles fortes, en phase avec les tendances actuelles.</p>
+    <div class="hero-tags">
+      <span class="hero-tag">Identité Visuelle</span>
+      <span class="hero-tag">Direction Artistique</span>
+      <span class="hero-tag">Print & Édition</span>
+      <span class="hero-tag">Martinique</span>
+    </div>
+    <a class="hero-cta" href="#works">Voir mes travaux →</a>
+  </div>
+  <div class="hero-right">
+    <div class="hero-right-inner">
+      <div class="hero-right-text">Directeur<br>Artistique</div>
+      <div class="hero-badge">Basé en Martinique · Disponible</div>
+    </div>
+    <div class="scroll-indicator"><div class="scroll-line"></div><span>Scroll</span></div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="mq-wrap">
+  <div class="mq-inner" id="mq">
+    <span>Identité Visuelle</span><span class="dot">✦</span><span>Direction Artistique</span><span class="dot">✦</span><span>Cosmétique</span><span class="dot">✦</span><span>Print & Édition</span><span class="dot">✦</span><span>Branding</span><span class="dot">✦</span><span>Campagnes</span><span class="dot">✦</span><span>Montage Vidéo</span><span class="dot">✦</span><span>Adobe Suite</span><span class="dot">✦</span><span>Identité Visuelle</span><span class="dot">✦</span><span>Direction Artistique</span><span class="dot">✦</span><span>Cosmétique</span><span class="dot">✦</span><span>Print & Édition</span><span class="dot">✦</span><span>Branding</span><span class="dot">✦</span><span>Campagnes</span><span class="dot">✦</span><span>Montage Vidéo</span><span class="dot">✦</span><span>Adobe Suite</span><span class="dot">✦</span>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-grid">
+    <div class="about-side">
+      <div class="big-num">23</div>
+      <div class="side-lbl">Ans — DA & Graphiste</div>
+    </div>
+    <div class="about-body">
+      <h2 class="sec-title">À propos</h2>
+      <p class="about-p">Directeur Artistique de 23 ans, j'ai acquis une solide expérience dans la <em>cosmétique</em> et les <em>médias</em>. Mon attrait pour la mode et les sneakers alimente ma créativité pour concevoir des <em>identités visuelles fortes</em> et des expériences immersives en phase avec les tendances actuelles.</p>
+      <p class="about-p">Formé au <em>Digital Collège de Lyon</em> et à <em>SkillFor Campus Martinique</em>, je maîtrise l'ensemble du processus créatif — du concept à la production finale.</p>
+      <div class="sk-cat"><div class="sk-cat-lbl">Création & Design</div><div class="sk-row"><span class="sk-tag">Photoshop</span><span class="sk-tag">Illustrator</span><span class="sk-tag">InDesign</span><span class="sk-tag">CapCut</span><span class="sk-tag">Vidéo</span></div></div>
+      <div class="sk-cat"><div class="sk-cat-lbl">Web & Digital</div><div class="sk-row"><span class="sk-tag">WordPress</span><span class="sk-tag">Shopify</span><span class="sk-tag">Instagram</span><span class="sk-tag">TikTok</span><span class="sk-tag">Stratégie digitale</span></div></div>
+      <div class="sk-cat"><div class="sk-cat-lbl">Savoir-être</div><div class="sk-row"><span class="sk-tag">Créatif</span><span class="sk-tag">Force de proposition</span><span class="sk-tag">Autonomie</span><span class="sk-tag">Travail d'équipe</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-bar">
+  <div class="stat-it"><div class="stat-n">3+</div><div class="stat-l">Années d'expérience</div></div>
+  <div class="stat-it"><div class="stat-n">4</div><div class="stat-l">Postes occupés</div></div>
+  <div class="stat-it"><div class="stat-n">2</div><div class="stat-l">Formations diplômantes</div></div>
+  <div class="stat-it"><div class="stat-n">∞</div><div class="stat-l">Idées créatives</div></div>
+</div>
+
+<!-- EXPERIENCE -->
+<section class="exp-section" id="experience">
+  <div class="exp-hdr"><h2 class="sec-title">Expériences</h2><span class="sub-lbl">04 postes</span></div>
+  <div class="tl-grid">
+    <div class="tl-item"><div class="tl-date">2025 — Présent</div><div class="tl-role">Chargé de communication</div><div class="tl-co">ELYAD Marketing</div><ul class="tl-ul"><li>Direction artistique & identité visuelle</li><li>Prise de vue photo & vidéo</li><li>Gestion des plannings & tournages</li><li>Relation client</li></ul></div>
+    <div class="tl-item"><div class="tl-date">2023 — 2025</div><div class="tl-role">Directeur Artistique</div><div class="tl-co">Beauty Distribution</div><ul class="tl-ul"><li>Direction artistique & identité visuelle</li><li>Retouche photo produit & montage vidéo</li><li>Refonte complète du site web</li><li>Optimisation de l'univers de marque</li></ul></div>
+    <div class="tl-item"><div class="tl-date">2022 — 2023</div><div class="tl-role">Graphiste</div><div class="tl-co">ZayActu</div><ul class="tl-ul"><li>Création logos & identités visuelles</li><li>Direction artistique & gestion de projets</li><li>Montage vidéo & retouche photo</li></ul></div>
+    <div class="tl-item"><div class="tl-date">2022 — 2023</div><div class="tl-role">Community Manager</div><div class="tl-co">Sports Indies</div><ul class="tl-ul"><li>Animation réseaux sociaux</li><li>Élaboration stratégie digitale</li><li>Montage vidéo & retouche photo</li></ul></div>
+  </div>
+  <h2 class="sec-title" style="margin-top:3.5rem;margin-bottom:2rem">Formations</h2>
+  <div class="fo-row">
+    <div class="fo-item"><div class="tl-date">2023 — 2025</div><div class="tl-role" style="font-family:'Something in the Cloud',cursive;font-size:1.5rem">Master Stratégie Digitale</div><div class="tl-co">Digital Collège — Lyon</div><p style="font-size:.7rem;color:var(--gy);margin-top:.5rem;line-height:1.5">Direction Artistique & Stratégie Digitale</p></div>
+    <div class="fo-item"><div class="tl-date">2022 — 2023</div><div class="tl-role" style="font-family:'Something in the Cloud',cursive;font-size:1.5rem">Licence Pro E-commerce</div><div class="tl-co">SkillFor Campus — Martinique</div><p style="font-size:.7rem;color:var(--gy);margin-top:.5rem;line-height:1.5">Communication Digitale & E-commerce</p></div>
+  </div>
+</section>
+
+<!-- WORKS -->
+<section id="works">
+  <div class="wk-hdr"><h2 class="sec-title">Travaux</h2><span class="sub-lbl">07 projets</span></div>
+  <div class="wk-grid">
+    <a class="wk-item" href="projets-personnels.html">
+      <div class="wk-vis bg1"><div class="wk-ac tl"></div><div class="wk-ac br"></div><div class="wk-ph">Projets<br>Personnels</div><div class="wk-overlay"><img src="./images/logos/logo BS.png" alt="BS Logo"></div></div>
+      <div class="wk-info"><div><div class="wk-title">Projets Personnels</div><div class="wk-meta">ERLEY · Logos · Covers · Mockups — Divers</div></div><span class="wk-arr">→</span></div>
+    </a>
+    <a class="wk-item" href="zayactu.html">
+      <div class="wk-vis bg5"><div class="wk-ac tl"></div><div class="wk-ac br"></div><div class="wk-ph">ZayActu</div><div class="wk-overlay"><img src="./images/logos/logo zayactu.png" alt="ZayActu Logo"></div></div>
+      <div class="wk-info"><div><div class="wk-title">ZayActu</div><div class="wk-meta">Graphiste · Réseaux Sociaux — 2022/23</div></div><span class="wk-arr">→</span></div>
+    </a>
+    <a class="wk-item" href="elyad-marketing.html">
+      <div class="wk-vis bg2"><div class="wk-ac tl"></div><div class="wk-ac br"></div><div class="wk-ph">ELYAD<br>Marketing</div><div class="wk-overlay"><img src="./images/logos/images-3.png" alt="ELYAD Logo"></div></div>
+      <div class="wk-info"><div><div class="wk-title">ELYAD Marketing</div><div class="wk-meta">Chargé de Communication — 2025</div></div><span class="wk-arr">→</span></div>
+    </a>
+    <a class="wk-item" href="beauty-distribution.html">
+      <div class="wk-vis bg6" style="background:#0f0a0d"><div class="wk-ac tl" style="border-color:#c9748a"></div><div class="wk-ac br"></div><div class="wk-ph">Beauty<br>Distribution</div><div class="wk-overlay"><img src="./images/logos/user_file6761854fc4c26.png" alt="Beauty Distribution Logo"></div></div>
+      <div class="wk-info"><div><div class="wk-title">Beauty Distribution</div><div class="wk-meta">Directeur Artistique — 2023/25</div></div><span class="wk-arr">→</span></div>
+    </a>
+    <a class="wk-item" href="erley.html">
+      <div class="wk-vis bg6" style="background:#0d0d0d"><div class="wk-ac tl" style="border-color:#c8a032"></div><div class="wk-ac br" style="border-color:#c8a032"></div><div class="wk-ph" style="opacity:.15">ERLEY</div><div class="wk-overlay"><img src="./images/logos/LOGO ERLEY .png" alt="ERLEY Logo"></div></div>
+      <div class="wk-info"><div><div class="wk-title">ERLEY</div><div class="wk-meta">Fondateur · Streetwear Martiniquais — 2024</div></div><span class="wk-arr">→</span></div>
+    </a>
+    <a class="wk-item" href="videos-demo.html">
+      <div class="wk-vis" style="background:#1a1800"><div class="wk-ac tl" style="border-color:var(--am)"></div><div class="wk-ac br"></div><div class="wk-ph" style="font-size:2.5rem;opacity:.12">Montages<br>Vidéo</div><div class="wk-overlay"><span style="font-size:3.5rem">🎬</span></div></div>
+      <div class="wk-info"><div><div class="wk-title">Montages Vidéo</div><div class="wk-meta">Production · Direction Artistique — 2025</div></div><span class="wk-arr">→</span></div>
+    </a>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="ct-left">
+    <div>
+      <h2 class="ct-big">On travaille<br>ensemble<span>.</span></h2>
+      <p class="ct-sub">Un projet ? Une idée ? Parlons-en.</p>
+    </div>
+    <div class="ct-details">
+      <div class="ct-line"><div class="ct-dot"></div><a class="ct-email" href="mailto:stanleybellerose@gmail.com">stanleybellerose@gmail.com</a></div>
+      <div class="ct-line"><div class="ct-dot"></div><span class="ct-info">06 96 88 08 49</span></div>
+      <div class="ct-line"><div class="ct-dot"></div><span class="ct-info">Le Robert, Martinique — 97231</span></div>
+    </div>
+  </div>
+  <div class="ct-right">
+    <div class="ct-rtitle">Envoyer un message</div>
+    <div class="f-grp"><label class="f-lbl">Votre nom</label><input class="f-inp" type="text" placeholder="Marie Dupont"></div>
+    <div class="f-grp"><label class="f-lbl">Email</label><input class="f-inp" type="email" placeholder="marie@studio.fr"></div>
+    <div class="f-grp"><label class="f-lbl">Votre projet</label><textarea class="f-inp f-ta" placeholder="Décrivez votre projet..."></textarea></div>
+    <button class="f-btn">Envoyer →</button>
+  </div>
+</section>
+
+<footer>
+  <div class="ft-name">Stanley Bellerose</div>
+  <div class="ft-copy">© 2025 — Directeur Artistique · Martinique</div>
+</footer>
+
+<script>
+// CURSOR
+const cur=document.getElementById('cur');
+document.addEventListener('mousemove',e=>{cur.style.left=e.clientX+'px';cur.style.top=e.clientY+'px'});
+document.querySelectorAll('a,button,.wk-item,.tl-item,.fo-item,.sk-tag').forEach(el=>{
+  el.addEventListener('mouseenter',()=>cur.classList.add('hv'));
+  el.addEventListener('mouseleave',()=>cur.classList.remove('hv'));
+});
+
+// MARQUEE
+const m=document.getElementById('mq');m.innerHTML+=m.innerHTML;
+
+// SMOOTH SCROLL
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',e=>{
+    const t=document.querySelector(a.getAttribute('href'));
+    if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth'})}
+  });
+});
+
+// SCROLL ANIMATIONS - Fade in et slide up au scroll
+const observerOptions={threshold:.15,rootMargin:'0px 0px -100px 0px'};
+const observer=new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      entry.target.style.opacity='1';
+      entry.target.style.transform='translateY(0)';
+      observer.unobserve(entry.target);
+    }
+  });
+},observerOptions);
+
+document.querySelectorAll('.tl-item, .fo-item, .wk-item, .sk-cat, .stat-it, .about-p').forEach(el=>{
+  el.style.opacity='0';
+  el.style.transform='translateY(20px)';
+  el.style.transition='opacity .6s ease-out, transform .6s ease-out';
+  observer.observe(el);
+});
+
+// ANIMATED STATS COUNTER
+function animateCounter(element,target,duration=2000){
+  let current=0;
+  const increment=target/duration*16;
+  const timer=setInterval(()=>{
+    current+=increment;
+    if(current>=target){
+      element.textContent=target;
+      clearInterval(timer);
+    }else{
+      element.textContent=Math.floor(current)+'+';
+    }
+  },16);
+}
+
+const statsObserver=new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      const statNum=entry.target.querySelector('.stat-n');
+      if(statNum && !statNum.dataset.animated){
+        const text=statNum.textContent;
+        const match=text.match(/(\d+)/);
+        if(match){
+          const num=parseInt(match[1]);
+          animateCounter(statNum,num);
+          statNum.dataset.animated='true';
+        }
+        statsObserver.unobserve(entry.target);
+      }
+    }
+  });
+},{threshold:.5});
+
+document.querySelectorAll('.stat-it').forEach(el=>statsObserver.observe(el));
+
+// PARALLAX EFFECT on hover des work items
+document.querySelectorAll('.wk-item').forEach(item=>{
+  item.addEventListener('mousemove',e=>{
+    const rect=item.getBoundingClientRect();
+    const x=(e.clientX-rect.left)/rect.width;
+    const y=(e.clientY-rect.top)/rect.height;
+    const rotX=(y-0.5)*5;
+    const rotY=(x-0.5)*5;
+    item.style.transform=`perspective(1000px) rotateX(${rotX}deg) rotateY(${rotY}deg) scale(1.02)`;
+  });
+  item.addEventListener('mouseleave',()=>{
+    item.style.transform='perspective(1000px) rotateX(0) rotateY(0) scale(1)';
+  });
+});
+
+// SCROLL PROGRESS BAR
+const progressBar=document.createElement('div');
+progressBar.style.cssText='position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,#D93A2B,#E8952A);z-index:1000;transition:width .1s ease-out';
+document.body.appendChild(progressBar);
+
+window.addEventListener('scroll',()=>{
+  const scrollPercent=(window.scrollY/(document.documentElement.scrollHeight-window.innerHeight))*100;
+  progressBar.style.width=scrollPercent+'%';
+});
+
+// TEXT REVEAL ON SCROLL - Lettre par lettre
+const textObserver=new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting && entry.target.classList.contains('hero-name')){
+      const text=entry.target.textContent;
+      entry.target.innerHTML='';
+      let delay=0;
+      text.split('').forEach(char=>{
+        const span=document.createElement('span');
+        span.textContent=char;
+        span.style.cssText=`display:inline-block;opacity:0;animation:fadeInLetter .5s ease-out ${delay}ms forwards`;
+        entry.target.appendChild(span);
+        delay+=30;
+      });
+      textObserver.unobserve(entry.target);
+    }
+  });
+},{threshold:.5});
+
+document.querySelectorAll('.hero-name').forEach(el=>textObserver.observe(el));
+
+// ADD ANIMATION KEYFRAMES
+const style=document.createElement('style');
+style.textContent=`
+@keyframes fadeInLetter{
+  from{opacity:0;transform:translateY(10px)}
+  to{opacity:1;transform:translateY(0)}
+}
+.wk-item{transition:transform .3s cubic-bezier(.23,1,.320,1)}
+`;
+document.head.appendChild(style);
+
+// SMOOTH HOVER on navigation links
+document.querySelectorAll('.nav-links a').forEach(link=>{
+  link.addEventListener('mouseenter',()=>{
+    link.style.transition='opacity .3s ease';
+  });
+});
+</script>
+</body>
+</html>

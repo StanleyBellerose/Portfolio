@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stanley Bellerose — Directeur Artistique</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--bk:#0a0a0a;--wh:#f5f2ed;--cr:#f0ece4;--rd:#D93A2B;--am:#E8952A;--gy:#888480;--accent:#d4554b}
+html{scroll-behavior:smooth}
+body{background:var(--bk);color:var(--wh);font-family:'Inter',sans-serif;overflow-x:hidden;cursor:none}
+
+.cursor{width:8px;height:8px;background:var(--rd);border-radius:50%;position:fixed;pointer-events:none;z-index:9999;transition:width .2s,height .2s,background .2s;transform:translate(-50%,-50%)}
+.cursor.hv{width:44px;height:44px;background:transparent;border:1.5px solid var(--rd)}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:1.5rem 4rem;background:rgba(10,10,10,.8);backdrop-filter:blur(10px);border-bottom:1px solid rgba(255,255,255,.05)}
+.nav-logo{font-family:'Playfair Display',serif;font-size:1.5rem;color:var(--wh);cursor:pointer;font-weight:800;letter-spacing:-.02em}
+.nav-links{display:flex;gap:2.5rem;align-items:center}
+.nav-links a{font-size:.75rem;letter-spacing:.15em;text-transform:uppercase;color:var(--wh);text-decoration:none;cursor:pointer;transition:color .3s;font-weight:500}
+.nav-links a:hover{color:var(--accent)}
+
+/* HERO */
+#hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;padding:6rem 5rem;position:relative;overflow:hidden;background:linear-gradient(135deg,#1a1a1a 0%,#0a0a0a 50%,#1a0f08 100%)}
+#hero::before{content:'';position:absolute;top:-50%;right:-10%;width:800px;height:800px;background:radial-gradient(circle,rgba(217,58,43,.15) 0%,transparent 70%);border-radius:50%;z-index:1}
+#hero::after{content:'';position:absolute;bottom:-30%;left:0;width:600px;height:600px;background:radial-gradient(circle,rgba(232,149,42,.08) 0%,transparent 70%);border-radius:50%;z-index:1}
+.hero-content{position:relative;z-index:2;max-width:700px;animation:fadeInUp 1s ease-out}
+.hero-eyebrow{font-size:.85rem;letter-spacing:.15em;text-transform:uppercase;color:var(--accent);margin-bottom:1.5rem;font-weight:600}
+.hero-name{font-family:'Playfair Display',serif;font-size:clamp(2.8rem,7vw,5.5rem);line-height:1.1;color:var(--wh);margin-bottom:1.5rem;font-weight:800;letter-spacing:-.02em;white-space:normal;overflow:visible}
+.hero-desc{font-size:1.15rem;color:#aaa;line-height:1.8;max-width:600px;margin-bottom:2.5rem;font-weight:300}
+.hero-cta{display:inline-flex;align-items:center;gap:.8rem;background:linear-gradient(135deg,var(--accent) 0%,#e03d35 100%);color:var(--wh);padding:1.2rem 2.5rem;font-size:.9rem;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:all .4s ease;border:none;text-decoration:none;border-radius:2px;box-shadow:0 10px 30px rgba(212,85,75,.2)}
+.hero-cta:hover{transform:translateY(-3px);box-shadow:0 15px 40px rgba(212,85,75,.35)}
+@keyframes fadeInUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+
+/* UNIFIED TYPOGRAPHY */
+h1, h2, h3, h4, h5, h6 {font-family:'Playfair Display',serif;font-weight:800;letter-spacing:-.02em;color:var(--wh)}
+h1 {font-size:clamp(3.5rem,8vw,6.5rem)}
+h2 {font-size:3.5rem;margin-bottom:1.5rem}
+h3 {font-size:2.2rem;margin-bottom:1.5rem}
+h4 {font-size:1.4rem;margin-bottom:1rem}
+.sec-title {font-size:3.5rem;color:var(--wh);font-weight:800;letter-spacing:-.02em;margin-bottom:2rem}
+.sub-title {font-size:1.2rem;color:var(--accent);font-weight:600;letter-spacing:.1em;text-transform:uppercase}
+
+/* MARQUEE */
+.mq-wrap{background:linear-gradient(90deg,var(--accent) 0%,#e03d35 100%);overflow:hidden;padding:1rem 0;white-space:nowrap;border-top:1px solid rgba(0,0,0,.1);border-bottom:1px solid rgba(0,0,0,.1)}
+.mq-inner{display:inline-flex;animation:mq 25s linear infinite}
+.mq-inner span{font-family:'Playfair Display',serif;font-size:1.4rem;color:var(--wh);padding:0 2.5rem;font-weight:700;letter-spacing:.02em}
+.mq-inner .dot{padding:0;opacity:.6;font-family:monospace;font-size:.8rem}
+@keyframes mq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ABOUT */
+#about{border-bottom:1px solid rgba(255,255,255,.08);padding:6rem 5rem}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem}
+.about-col h3{font-family:'Playfair Display',serif;font-size:2.2rem;color:var(--wh);margin-bottom:1.5rem;font-weight:800;letter-spacing:-.01em}
+.about-col p{font-size:1rem;color:#aaa;line-height:1.8;margin-bottom:1.2rem}
+.about-col em{color:var(--wh);font-weight:600}
+.about-stats{display:grid;grid-template-columns:repeat(2,1fr);gap:2rem;margin-top:2.5rem}
+.stat-card{padding:2rem;border:1px solid rgba(255,255,255,.1);border-radius:2px;transition:all .4s ease;cursor:default}
+.stat-card:hover{border-color:var(--accent);background:rgba(212,85,75,.05)}
+.stat-num{font-family:'Playfair Display',serif;font-size:2.8rem;color:var(--accent);font-weight:800}
+.stat-label{font-size:.75rem;letter-spacing:.15em;text-transform:uppercase;color:#888;margin-top:.5rem;font-weight:600}
+.skills-group{margin-top:2rem}
+.skill-cat{margin-bottom:1.5rem}
+.skill-cat-label{font-size:.75rem;letter-spacing:.15em;text-transform:uppercase;color:var(--accent);margin-bottom:.7rem;font-weight:600}
+.skill-list{display:flex;flex-wrap:wrap;gap:.7rem}
+.skill-tag{font-size:.85rem;padding:.6rem 1.2rem;border:1px solid rgba(255,255,255,.15);border-radius:2px;color:#aaa;transition:all .3s}
+.skill-tag:hover{border-color:var(--accent);color:var(--accent)}
+
+/* STATS */
+.stats-bar{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid rgba(255,255,255,.08);border-bottom:1px solid rgba(255,255,255,.08);margin-top:3rem}
+.stat-it{padding:2rem 2.5rem;border-right:1px solid rgba(255,255,255,.08);display:flex;flex-direction:column;gap:.4rem;text-align:center;transition:all .4s ease}
+.stat-it:last-child{border-right:none}
+.stat-it:hover{background:rgba(212,85,75,.03);transform:translateY(-3px)}
+.stat-n{font-family:'Playfair Display',serif;font-size:3rem;color:var(--accent);line-height:1;font-weight:800;min-height:50px}
+.stat-l{font-size:.75rem;letter-spacing:.15em;text-transform:uppercase;color:#888;font-weight:600}
+
+/* EXPERIENCE */
+.exp-section{padding:6rem 5rem;border-bottom:1px solid rgba(255,255,255,.08)}
+.exp-hdr{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:3.5rem}
+.exp-hdr h2{font-family:'Playfair Display',serif;font-size:3.5rem;color:var(--wh);font-weight:800;letter-spacing:-.02em;margin-bottom:0}
+.sub-lbl{font-size:.75rem;letter-spacing:.15em;text-transform:uppercase;color:#888;font-weight:600}
+.tl-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem}
+.tl-item{padding:2.5rem;border:1px solid rgba(255,255,255,.1);border-radius:2px;transition:all .4s ease}
+.tl-item:hover{border-color:var(--accent);background:rgba(212,85,75,.03);transform:translateY(-5px)}
+.tl-date{font-size:.75rem;letter-spacing:.15em;color:var(--accent);margin-bottom:.7rem;text-transform:uppercase;font-weight:600}
+.tl-role{font-family:'Playfair Display',serif;font-size:1.6rem;color:var(--wh);line-height:1.2;margin-bottom:.4rem;font-weight:800}
+.tl-co{font-size:.8rem;letter-spacing:.1em;color:#aaa;text-transform:uppercase;margin-bottom:1.2rem;font-weight:500}
+.tl-ul{list-style:none}
+.tl-ul li{font-size:.85rem;color:#aaa;padding:.4rem 0 .4rem 1.2rem;position:relative;line-height:1.6}
+.tl-ul li::before{content:'▸';position:absolute;left:0;color:var(--accent);opacity:.6}
+.fo-row{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid rgba(255,255,255,.08);margin-top:3rem}
+.fo-item{padding:2.5rem;border-right:1px solid rgba(255,255,255,.08);transition:background .3s}
+.fo-item:last-child{border-right:none}
+.fo-item:hover{background:rgba(212,85,75,.02)}
+
+/* WORKS - MASONRY GRID */
+#works{padding:6rem 5rem 0}
+.wk-hdr{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:3.5rem}
+.wk-hdr h2{font-family:'Playfair Display',serif;font-size:3.5rem;color:var(--wh);font-weight:800;letter-spacing:-.02em}
+.wk-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:2rem;grid-auto-rows:320px}
+.wk-grid > :nth-child(1){grid-column:span 2;grid-row:span 2}
+.wk-item{position:relative;overflow:hidden;cursor:pointer;text-decoration:none;display:block;border-radius:4px;background:linear-gradient(135deg,rgba(32,32,32,.8),rgba(20,20,20,.8));border:1px solid rgba(255,255,255,.08);transition:all .5s ease}
+.wk-item:hover{border-color:var(--accent);transform:translateY(-8px);box-shadow:0 20px 40px rgba(212,85,75,.2)}
+.wk-vis{height:100%;position:relative;display:flex;align-items:center;justify-content:center;transition:transform .5s ease}
+.wk-item:hover .wk-vis{transform:scale(1.05)}
+.wk-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(212,85,75,.2) 0%,rgba(224,61,53,.1) 100%);opacity:0;transition:opacity .4s ease;z-index:2}
+.wk-item:hover .wk-overlay{opacity:1}
+.wk-logo{max-width:120px;max-height:100px;object-fit:contain}
+.wk-content{position:absolute;bottom:0;left:0;right:0;padding:1.5rem;background:linear-gradient(to top,rgba(10,10,10,.95),transparent);z-index:3;opacity:0;transform:translateY(20px);transition:all .4s ease}
+.wk-item:hover .wk-content{opacity:1;transform:translateY(0)}
+.wk-title{font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--wh);font-weight:800;margin-bottom:.3rem}
+.wk-cat{font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);font-weight:600}
+.wk-overlay{position:absolute;inset:0;background:transparent;opacity:1;transition:opacity .3s;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:2rem;color:var(--wh);font-weight:700}
+.wk-overlay img{max-width:85%;max-height:85%;object-fit:contain;opacity:.8;transition:opacity .3s;margin:auto}
+.wk-item:hover .wk-overlay img{opacity:1}
+.wk-ph{font-family:'Playfair Display',serif;font-size:4rem;opacity:0;color:var(--wh);text-align:center;padding:1rem;line-height:1.2;font-weight:700}
+.wk-ac{position:absolute;width:70px;height:70px;border:2px solid;opacity:.25}
+.wk-ac.tl{top:24px;left:24px;border-color:var(--am)}
+.wk-ac.br{bottom:24px;right:24px;border-color:var(--wh);transform:rotate(15deg)}
+.wk-info{padding:1.5rem 2rem;display:flex;justify-content:space-between;align-items:flex-start;background:var(--bk);border-top:1px solid rgba(255,255,255,.08)}
+.wk-meta{font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-top:.4rem;font-weight:600}
+.wk-arr{font-size:1.2rem;color:var(--accent);transition:all .3s;align-self:center}
+.wk-item:hover .wk-arr{color:var(--wh);transform:translateX(4px)}
+
+/* CONTACT */
+#contact{display:grid;grid-template-columns:1fr 1fr;min-height:60vh;border-top:1px solid rgba(255,255,255,.08)}
+.ct-left{background:linear-gradient(135deg,var(--cr) 0%,#e8d9c8 100%);color:var(--bk);padding:5rem;display:flex;flex-direction:column;justify-content:space-between}
+.ct-left h2{font-family:'Playfair Display',serif;font-size:3.2rem;font-weight:800;letter-spacing:-.02em;margin-bottom:2rem;color:#000}
+.ct-left p{font-size:1rem;line-height:1.8;margin-bottom:1.5rem}
+.ct-right{padding:5rem;display:flex;flex-direction:column;justify-content:center}
+.ct-right h3{font-family:'Playfair Display',serif;font-size:2.5rem;font-weight:800;margin-bottom:2rem;letter-spacing:-.01em}
+.ct-form{display:flex;flex-direction:column;gap:1.5rem}
+.ct-form input,.ct-form textarea{background:transparent;border:none;border-bottom:1px solid rgba(255,255,255,.2);padding:.8rem 0;color:var(--wh);font-family:'Inter',sans-serif;font-size:.95rem;outline:none;transition:border-color .3s}
+.ct-form input::placeholder,.ct-form textarea::placeholder{color:rgba(255,255,255,.3)}
+.ct-form input:focus,.ct-form textarea:focus{border-color:var(--accent)}
+.ct-form textarea{resize:none;min-height:100px}
+.ct-form button{background:linear-gradient(135deg,var(--accent),#e03d35);color:var(--wh);border:none;padding:1.2rem 2.5rem;font-size:.9rem;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;margin-top:1rem;transition:all .3s;border-radius:2px}
+.ct-form button:hover{transform:translateY(-3px);box-shadow:0 15px 35px rgba(212,85,75,.3)}
+.ct-info{display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-top:3rem;padding-top:2rem;border-top:1px solid rgba(255,255,255,.1)}
+.ct-item h4{font-size:.75rem;letter-spacing:.15em;text-transform:uppercase;color:var(--accent);margin-bottom:.5rem;font-weight:700}
+.ct-item p{font-size:1rem;color:#aaa;line-height:1.6}
+.ct-item a{color:var(--accent);text-decoration:none;transition:color .3s}
+.ct-item a:hover{color:var(--wh)}
+
+footer{display:flex;justify-content:space-between;align-items:center;padding:2rem 5rem;border-top:1px solid rgba(255,255,255,.08);background:rgba(10,10,10,.5)}
+.ft-name{font-family:'Playfair Display',serif;font-size:1.2rem;color:var(--wh);font-weight:800}
+.ft-copy{font-size:.75rem;letter-spacing:.15em;color:#888;text-transform:uppercase;font-weight:500}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  nav{padding:1rem 2rem}
+  .nav-links{gap:1rem;font-size:.6rem}
+  #hero{padding:4rem 2rem}
+  .hero-name{font-size:2.5rem}
+  .hero-cta{padding:.9rem 1.8rem;font-size:.8rem}
+  .about-grid{grid-template-columns:1fr}
+  .stats-bar{grid-template-columns:repeat(2,1fr)}
+  .tl-grid{grid-template-columns:1fr}
+  .wk-grid{grid-template-columns:1fr}
+  .wk-grid > :nth-child(1){grid-column:span 1;grid-row:span 1}
+  #contact{grid-template-columns:1fr}
+  .ct-left,.ct-right{padding:3rem 2rem}
+  footer{padding:1.5rem 2rem;flex-direction:column;gap:1rem;text-align:center}
+  .exp-section{padding:4rem 2rem}
+  #works{padding:4rem 2rem}
+}
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cur"></div>
+
+<nav>
+  <div class="nav-logo">Stanley Bellerose</div>
+  <div class="nav-links">
+    <a href="#about">Profil</a>
+    <a href="#experience">Expériences</a>
+    <a href="#works">Travaux</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-content">
+    <p class="hero-eyebrow">Directeur Artistique & Graphisme</p>
+    <h1 class="hero-name">Stanley Bellerose</h1>
+    <p class="hero-desc">DA de 23 ans, spécialisé dans la création d'identités visuelles fortes pour les secteurs cosmétique, mode et médias. Créatif basé en Martinique.</p>
+    <a class="hero-cta" href="#works">Voir mes travaux →</a>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="mq-wrap">
+  <div class="mq-inner" id="mq">
+    <span>Identité Visuelle</span><span class="dot">·</span><span>Direction Artistique</span><span class="dot">·</span><span>Branding</span><span class="dot">·</span><span>Cosmétique</span><span class="dot">·</span><span>Print & Édition</span><span class="dot">·</span><span>Campagnes</span><span class="dot">·</span><span>Montage Vidéo</span><span class="dot">·</span><span>Adobe Suite</span><span class="dot">·</span>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-grid">
+    <div class="about-col">
+      <h3>À propos</h3>
+      <p>Directeur Artistique de 23 ans, j'ai acquis une expérience solide dans la <em>cosmétique</em> et les <em>médias</em>. Mon attrait pour la mode alimente ma créativité pour concevoir des <em>identités visuelles fortes</em> en phase avec les tendances actuelles.</p>
+      <p>Formé au Digital Collège de Lyon et SkillFor Campus Martinique, je maîtrise l'ensemble du processus créatif du concept à la production finale.</p>
+    </div>
+    <div class="about-col">
+      <h3>Expertise</h3>
+      <p><em>Création & Design:</em> Photoshop, Illustrator, InDesign, CapCut, Figma</p>
+      <p><em>Web & Digital:</em> WordPress, Shopify, Réseaux sociaux, Stratégie digitale</p>
+    </div>
+  </div>
+
+<!-- STATS -->
+<div class="stats-bar">
+  <div class="stat-it" data-target="3">
+    <div class="stat-n">0</div>
+    <div class="stat-l">Années d'expérience</div>
+  </div>
+  <div class="stat-it" data-target="15">
+    <div class="stat-n">0</div>
+    <div class="stat-l">Projets créatifs</div>
+  </div>
+  <div class="stat-it" data-target="8">
+    <div class="stat-n">0</div>
+    <div class="stat-l">Clients satisfaits</div>
+  </div>
+  <div class="stat-it" data-target="∞">
+    <div class="stat-n">∞</div>
+    <div class="stat-l">Idées créatives</div>
+  </div>
+</div>
+
+<!-- EXPERIENCE -->
+<section class="exp-section" id="experience">
+  <div class="exp-hdr"><h2>Expériences</h2><span class="sub-lbl">4 postes</span></div>
+  <div class="tl-grid">
+    <div class="tl-item"><div class="tl-date">2025 — Présent</div><div class="tl-role">Chargé de communication</div><div class="tl-co">ELYAD Marketing</div><ul class="tl-ul"><li>Direction artistique & identité visuelle</li><li>Prise de vue photo & vidéo</li><li>Gestion des plannings & tournages</li></ul></div>
+    <div class="tl-item"><div class="tl-date">2023 — 2025</div><div class="tl-role">Directeur Artistique</div><div class="tl-co">Beauty Distribution</div><ul class="tl-ul"><li>Direction artistique & identité visuelle</li><li>Retouche photo produit & montage vidéo</li><li>Refonte complète du site web</li></ul></div>
+    <div class="tl-item"><div class="tl-date">2022 — Present</div><div class="tl-role">Graphiste</div><div class="tl-co">ZayActu</div><ul class="tl-ul"><li>Création logos & identités visuelles</li><li>Direction artistique & gestion de projets</li><li>Montage vidéo & retouche photo</li></ul></div>
+    <div class="tl-item"><div class="tl-date">2022 — 2023</div><div class="tl-role">Community Manager</div><div class="tl-co">Sports Indies</div><ul class="tl-ul"><li>Animation réseaux sociaux</li><li>Stratégie digitale & création contenu</li><li>Montage vidéo & retouche photo</li></ul></div>
+  </div>
+</section>
+
+<!-- WORKS -->
+<section id="works">
+  <div class="wk-hdr"><h2>Travaux</h2><span class="sub-lbl">6 projets</span></div>
+  <div class="wk-grid">
+    <a class="wk-item" href="projets-personnels.html">
+      <div class="wk-vis"><div class="wk-overlay"><img src="./images/logos/logo BS.png" alt="BS Logo"></div></div>
+      <div class="wk-content"><div class="wk-title">Projets Personnels</div><div class="wk-cat">ERLEY · Logos · Covers · Mockups</div></div>
+    </a>
+    <a class="wk-item" href="zayactu.html">
+      <div class="wk-vis"><div class="wk-overlay"><img src="./images/logos/logo zayactu.png" alt="ZayActu Logo"></div></div>
+      <div class="wk-content"><div class="wk-title">ZayActu</div><div class="wk-cat">Graphiste & Réseaux Sociaux 2022-23</div></div>
+    </a>
+    <a class="wk-item" href="elyad-marketing.html">
+      <div class="wk-vis"><div class="wk-overlay"><img src="./images/logos/logo elyad.png" alt="ELYAD Logo"></div></div>
+      <div class="wk-content"><div class="wk-title">ELYAD Marketing</div><div class="wk-cat">Chargé Communication 2025</div></div>
+    </a>
+    <a class="wk-item" href="beauty-distribution.html">
+      <div class="wk-vis"><div class="wk-overlay"><img src="./images/logos/user_file6761854fc4c26.png" alt="Beauty Logo"></div></div>
+      <div class="wk-content"><div class="wk-title">Beauty Distribution</div><div class="wk-cat">Directeur Artistique 2023-25</div></div>
+    </a>
+    <a class="wk-item" href="erley.html">
+      <div class="wk-vis"><div class="wk-overlay"><img src="./images/logos/LOGO ERLEY.png" alt="ERLEY Logo"></div></div>
+      <div class="wk-content"><div class="wk-title">ERLEY</div><div class="wk-cat">Founder · Streetwear 2024</div></div>
+    </a>
+    <a class="wk-item" href="videos-demo.html">
+      <div class="wk-vis"><div class="wk-overlay"><span style="font-size:3rem">🎬</span></div></div>
+      <div class="wk-content"><div class="wk-title">Montages Vidéo</div><div class="wk-cat">Production & Direction 2025</div></div>
+    </a>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="ct-left">
+    <div>
+      <h2>Travaillons ensemble</h2>
+      <p>Vous avez un projet ? Discutons de comment transformer vos idées en réalité visuelle impactante. Je suis basé en Martinique et disponible pour des collaborations.</p>
+    </div>
+    <div class="ct-details">
+      <p style="color:var(--bk);opacity:.7">📍 Le Robert, Martinique</p>
+    </div>
+  </div>
+  <div class="ct-right">
+    <h3>Envoyez-moi un message</h3>
+    <form class="ct-form" onsubmit="return false">
+      <input type="text" placeholder="Votre nom" required>
+      <input type="email" placeholder="votre.email@exemple.fr" required>
+      <textarea placeholder="Votre projet..."></textarea>
+      <button type="submit">Envoyer →</button>
+    </form>
+    <div class="ct-info">
+      <div class="ct-item">
+        <h4>Email</h4>
+        <p><a href="mailto:stanleybellerose@gmail.com">stanleybellerose@gmail.com</a></p>
+      </div>
+      <div class="ct-item">
+        <h4>Téléphone</h4>
+        <p>06 96 88 08 49</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="ft-name">Stanley Bellerose</div>
+  <div class="ft-copy">© 2025 — Directeur Artistique · Martinique</div>
+</footer>
+
+<script>
+// CURSOR
+const cur=document.getElementById('cur');
+document.addEventListener('mousemove',e=>{cur.style.left=e.clientX+'px';cur.style.top=e.clientY+'px'});
+document.querySelectorAll('a,button,.wk-item,.tl-item,.fo-item,.sk-tag,.stat-bar').forEach(el=>{
+  el.addEventListener('mouseenter',()=>cur.classList.add('hv'));
+  el.addEventListener('mouseleave',()=>cur.classList.remove('hv'));
+});
+
+// MARQUEE
+const m=document.getElementById('mq');m.innerHTML+=m.innerHTML;
+
+// SMOOTH SCROLL
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',e=>{
+    const t=document.querySelector(a.getAttribute('href'));
+    if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth'})}
+  });
+});
+
+// SCROLL ANIMATIONS - Fade in et slide up au scroll
+const observerOptions={threshold:.15,rootMargin:'0px 0px -100px 0px'};
+const observer=new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      entry.target.style.opacity='1';
+      entry.target.style.transform='translateY(0)';
+      observer.unobserve(entry.target);
+    }
+  });
+},observerOptions);
+
+document.querySelectorAll('.tl-item, .fo-item, .wk-item, .stat-it, .about-col').forEach(el=>{
+  el.style.opacity='0';
+  el.style.transform='translateY(20px)';
+  el.style.transition='opacity .6s ease-out, transform .6s ease-out';
+  observer.observe(el);
+});
+
+// ANIMATED STATS COUNTER on scroll
+function animateCounter(element,target,duration=2000){
+  let current=0;
+  const increment=target/duration*16;
+  const timer=setInterval(()=>{
+    current+=increment;
+    if(current>=target){
+      element.textContent=target+'+';
+      clearInterval(timer);
+    }else{
+      element.textContent=Math.floor(current)+'+';
+    }
+  },16);
+}
+
+const statsObserver=new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      const statNum=entry.target.querySelector('.stat-n');
+      const target=entry.target.dataset.target;
+      if(statNum && !statNum.dataset.animated && target && target!=='∞'){
+        const num=parseInt(target);
+        animateCounter(statNum,num);
+        statNum.dataset.animated='true';
+      }
+      statsObserver.unobserve(entry.target);
+    }
+  });
+},{threshold:.5});
+
+document.querySelectorAll('.stat-it').forEach(el=>statsObserver.observe(el));
+
+// PARALLAX EFFECT on hover des work items
+document.querySelectorAll('.wk-item').forEach(item=>{
+  item.addEventListener('mousemove',e=>{
+    const rect=item.getBoundingClientRect();
+    const x=(e.clientX-rect.left)/rect.width;
+    const y=(e.clientY-rect.top)/rect.height;
+    const rotX=(y-0.5)*5;
+    const rotY=(x-0.5)*5;
+    item.style.transform=`perspective(1000px) rotateX(${rotX}deg) rotateY(${rotY}deg) scale(1.02)`;
+  });
+  item.addEventListener('mouseleave',()=>{
+    item.style.transform='perspective(1000px) rotateX(0) rotateY(0) scale(1)';
+  });
+});
+
+// SCROLL PROGRESS BAR
+const progressBar=document.createElement('div');
+progressBar.style.cssText='position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,#D93A2B,#E8952A);z-index:1000;transition:width .1s ease-out';
+document.body.appendChild(progressBar);
+
+window.addEventListener('scroll',()=>{
+  const scrollPercent=(window.scrollY/(document.documentElement.scrollHeight-window.innerHeight))*100;
+  progressBar.style.width=scrollPercent+'%';
+});
+
+// TEXT REVEAL ON SCROLL - Lettre par lettre
+const textObserver=new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting && entry.target.classList.contains('hero-name')){
+      const text=entry.target.textContent;
+      entry.target.innerHTML='';
+      let delay=0;
+      text.split('').forEach(char=>{
+        const span=document.createElement('span');
+        span.textContent=char;
+        span.style.cssText=`display:inline-block;opacity:0;animation:fadeInLetter .5s ease-out ${delay}ms forwards`;
+        entry.target.appendChild(span);
+        delay+=30;
+      });
+      textObserver.unobserve(entry.target);
+    }
+  });
+},{threshold:.5});
+
+document.querySelectorAll('.hero-name').forEach(el=>textObserver.observe(el));
+
+// ADD ANIMATION KEYFRAMES
+const style=document.createElement('style');
+style.textContent=`
+@keyframes fadeInLetter{
+  from{opacity:0;transform:translateY(10px)}
+  to{opacity:1;transform:translateY(0)}
+}
+.wk-item{transition:transform .3s cubic-bezier(.23,1,.320,1)}
+`;
+document.head.appendChild(style);
+
+// SMOOTH HOVER on navigation links
+document.querySelectorAll('.nav-links a').forEach(link=>{
+  link.addEventListener('mouseenter',()=>{
+    link.style.transition='opacity .3s ease';
+  });
+});
+</script>
+</body>
+</html>
